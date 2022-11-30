@@ -2,7 +2,7 @@
 name = "rslua"
 version = "0.2.9"
 description = "Yet another Lua lexer and Lua parser for Lua 5.3"
-authors = ["sssooonnnggg <sssooonnnggg111@gmail.com>"]
+authors = ["Rose1917 <renyanjie01@gmail.com>"]
 edition = "2018"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Rose1917/rslua.git"
