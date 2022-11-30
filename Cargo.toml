@@ -1,5 +1,5 @@
 [package]
-name = "rslua"
+name = "rslua-march1917"
 version = "0.2.9"
 description = "Yet another Lua lexer and Lua parser for Lua 5.3"
 authors = ["Rose1917 <renyanjie01@gmail.com>"]
