@@ -143,9 +143,8 @@ impl<'a> Parser<'a> {
         self.skip_comment();
         while self.current_token_type() == TokenType::ElseIf {
             cond_blocks.push(self.test_then_block()?);
+            self.skip_comment();
         }
-
-        self.skip_comment();
         let mut else_block = None;
         if self.test_next(TokenType::Else) {
             else_block = Some(self.block()?);
