@@ -145,7 +145,6 @@ impl<'a> Parser<'a> {
             cond_blocks.push(self.test_then_block()?);
             self.skip_comment();
         }
-
         let mut else_block = None;
         if self.test_next(TokenType::Else) {
             else_block = Some(self.block()?);
