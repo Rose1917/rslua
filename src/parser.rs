@@ -68,6 +68,19 @@ impl<'a> Parser<'a> {
                 break;
             }
         }
+
+        let is_comment = |toke_type:TokenType|-> bool{
+            toke_type == TokenType::SComment||toke_type == TokenType::MComment
+        };
+        
+        while !self.is_block_end() && is_comment(self.current_token_type()) {
+            let stat = self.stat()?;
+            if let Some(stat) = stat {
+                let source = self.current_source() - saved;
+                stats.push(StatInfo{source, stat});
+            }
+        }
+
         Ok(Block { stats })
     }
 
