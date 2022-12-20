@@ -122,7 +122,7 @@ impl BinOp {
     }
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone)]
 pub enum Expr {
     Nil,
     True,
@@ -150,7 +150,7 @@ impl Expr {
     }
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub enum Assignable {
     Name(String),
     SuffixedExpr(SuffixedExpr),
@@ -166,7 +166,7 @@ impl Expr {
     }
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct SuffixedExpr {
     pub primary: Box<Expr>,
     pub suffixes: Vec<Suffix>,
@@ -178,7 +178,7 @@ impl SuffixedExpr {
     }
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub enum Suffix {
     Attr(String),
     Index(Expr),
@@ -186,79 +186,79 @@ pub enum Suffix {
     FuncArgs(FuncArgs),
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub enum FuncArgs {
     Exprs(Vec<Expr>),
     Table(Table),
     String(String),
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct Table {
     pub fields: Vec<Field>,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub enum Field {
     ListField(Expr),
     RecField(RecField),
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct RecField {
     pub key: FieldKey,
     pub value: Expr,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub enum FieldKey {
     Name(String),
     Expr(Expr),
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct UnExpr {
     pub op: UnOp,
     pub expr: Box<Expr>,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct BinExpr {
     pub op: BinOp,
     pub left: Box<Expr>,
     pub right: Box<Expr>,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone)]
 pub struct IfStat {
     pub cond_blocks: Vec<CondBlock>,
     pub else_block: Option<Block>,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone)]
 pub struct CondBlock {
     pub cond: Expr,
     pub block: Block,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone)]
 pub struct WhileStat {
     pub cond: Expr,
     pub block: Block,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct DoBlock {
     pub block: Block,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub enum ForStat {
     ForNum(ForNum),
     ForList(ForList),
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct ForNum {
     pub var: String,
     pub init: Expr,
@@ -267,92 +267,92 @@ pub struct ForNum {
     pub body: Block,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct ForList {
     pub vars: Vec<String>,
     pub exprs: Vec<Expr>,
     pub body: Block,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct RepeatStat {
     pub cond: Expr,
     pub block: Block,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub enum FuncType {
     Global,
     Local,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct FuncStat {
     pub func_type: FuncType,
     pub func_name: FuncName,
     pub body: FuncBody,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct FuncName {
     pub fields: Vec<String>,
     pub method: Option<String>,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone)]
 pub struct FuncBody {
     pub params: Vec<Param>,
     pub block: Block,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone)]
 pub enum Param {
     VarArg,
     Name(String),
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone)]
 pub struct LocalStat {
     pub names: Vec<String>,
     pub exprs: Vec<Expr>,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone)]
 pub struct LabelStat {
     pub label: String,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone)]
 pub struct RetStat {
     pub exprs: Vec<Expr>,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct BreakStat {}
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct GotoStat {
     pub label: String,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct AssignStat {
     pub left: Vec<Assignable>,
     pub right: Vec<Expr>,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct CallStat {
     pub call: Assignable,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug,Clone)]
 pub struct CommentStat {
     pub is_single_line: bool,
     pub comment: String,
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone)]
 pub enum Stat {
     IfStat(IfStat),
     WhileStat(WhileStat),
@@ -379,7 +379,7 @@ impl Stat {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct StatInfo {
     pub stat: Stat,
     pub source: Source,
@@ -400,7 +400,7 @@ impl PartialEq for StatInfo {
     }
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone)]
 pub struct Block {
     pub stats: Vec<StatInfo>,
 }
