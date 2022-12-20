@@ -11,4 +11,4 @@ keywords = ["lua", "lua53", "parser", "lexer"]
 categories = ["parsing"]
 
 [dependencies]
-num-traits = "0.2.12"
+num-traits = "0.2.13"
