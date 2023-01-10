@@ -345,7 +345,6 @@ impl<'a> Parser<'a> {
     fn labelstat(&mut self) -> ParseResult<LabelStat> {
         let label = self.check_name()?;
         self.check_next(TokenType::DbColon)?;
-        self.skip_comment();
         Ok(LabelStat { label })
     }
 
